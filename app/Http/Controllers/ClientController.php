@@ -21,4 +21,9 @@ class ClientController extends Controller
         return view('client.categories');
 
     }
+    public function questions(){
+        // dd('yes');
+        return view('client.questions');
+
+    }
 }

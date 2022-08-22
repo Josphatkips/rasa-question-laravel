@@ -23,10 +23,12 @@ class Categories extends Component
     }
     public function render()
     {
-        $categories= Category::where([
+        $categories= Category::withCount('questions')->where([
             ['user_id',auth()->user()->id],
             ['name','like', '%'.$this->search.'%']
             ])->orderBy('name','ASC')->get();
+
+            // Log::info($categories);
         return view('livewire.categories', compact('categories'));
     }
 
