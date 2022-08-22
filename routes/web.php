@@ -27,13 +27,14 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboards', function () {
-        return view('dashboard');
+        return redirect('/client/dashboard');
     })->name('dashboard');
 });
 
 Route::prefix('client')->group(function () {
     Route::get('categories',[ClientController::class,'categories']);
     Route::get('questions',[ClientController::class,'questions']);
+    Route::get('dashboard',[ClientController::class,'dashboard']);
     
 });
-Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+// Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

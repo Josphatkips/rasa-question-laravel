@@ -26,4 +26,9 @@ class ClientController extends Controller
         return view('client.questions');
 
     }
+    public function dashboard(){
+        // dd('yes');
+        return view('client.dashboard');
+
+    }
 }

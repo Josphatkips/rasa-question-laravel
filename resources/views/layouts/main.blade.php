@@ -119,14 +119,14 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="./create-account.html">
+                    <a class="w-full" href="{{url('client/questions')}}">
                       Questions
                     </a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="./forgot-password.html">
+                    <a class="w-full" href="{{url('client/categories')}}">
                       Categories
                     </a>
                   </li>
@@ -134,7 +134,7 @@
                 </ul>
               </template>
             </li>
-            <li class="relative px-6 py-3">
+            {{-- <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 @click="toggleReportsMenu"
@@ -211,7 +211,7 @@
                  
                 </ul>
               </template>
-            </li>
+            </li> --}}
             <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -415,14 +415,14 @@
                 <li
                   class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 >
-                  <a class="w-full" href="./create-account.html">
+                  <a class="w-full" href="{{url('client/questions')}}">
                     Questions
                   </a>
                 </li>
                 <li
                   class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 >
-                  <a class="w-full" href="./forgot-password.html">
+                  <a class="w-full" href="{{url('client/categories')}}">
                     Categories
                   </a>
                 </li>
@@ -430,7 +430,7 @@
               </ul>
             </template>
           </li>
-          <li class="relative px-6 py-3">
+          {{-- <li class="relative px-6 py-3">
             <button
               class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               @click="toggleReportsMenu"
@@ -507,7 +507,7 @@
                
               </ul>
             </template>
-          </li>
+          </li> --}}
           <li class="relative px-6 py-3">
             <button
               class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -766,7 +766,7 @@
                 >
                   <img
                     class="object-cover w-8 h-8 rounded-full"
-                    src="https://images.unsplash.com/photo-1502378735452-bc7d86632805?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=aa3a807e1bbdfd4364d1f449eaa96d82"
+                    src="{{asset('images/user.png')}}"
                     alt=""
                     aria-hidden="true"
                   />
@@ -827,7 +827,11 @@
                       </a>
                     </li>
                     <li class="flex">
-                      <a
+                      
+                      <form method="POST" action="{{url('/logout')}}">
+                        @csrf
+                      <button
+                      type="submit"
                         class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
                         href="{{url('/logout')}}"
                       >
@@ -846,7 +850,8 @@
                           ></path>
                         </svg>
                         <span>Log out</span>
-                      </a>
+                      </button>
+                    </form>
                     </li>
                   </ul>
                 </template>
