@@ -148,12 +148,7 @@
                       aria-hidden="true"
                     ></div>
                   </div>
-                  <div>
-                    <p class="font-semibold">Jolina Angelie</p>
-                    <p class="text-xs text-gray-600 dark:text-gray-400">
-                      Unemployed
-                    </p>
-                  </div>
+                  
                 </div>
               </td>
               <td class="py-4 px-6">
@@ -394,7 +389,7 @@
 
         
     @else
-    <img src="{{ asset('storage/images/166116286605.png') }}" class="h-48 w-48">
+    <img src="{{ asset('storage/images/'.$image2) }}" class="h-48 w-48">
 
     @endif
       <form class="md:w-2/3 py-4" wire:submit.prevent="updateQuestion"> 
