@@ -6,17 +6,27 @@ use App\Models\Category;
 use App\Models\Question;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Categories extends Component
 {
+    use WithPagination;
     public $open=false;
     public $openedit=false;
     public $count=1;
     public $category;
     public $editid;
+    public $search = '';
+    public function updatingSearch()
+    {
+        $this->resetPage();
+    }
     public function render()
     {
-        $categories= Category::where('user_id',auth()->user()->id)->orderBy('name','ASC')->get();
+        $categories= Category::where([
+            ['user_id',auth()->user()->id],
+            ['name','like', '%'.$this->search.'%']
+            ])->orderBy('name','ASC')->get();
         return view('livewire.categories', compact('categories'));
     }
 
