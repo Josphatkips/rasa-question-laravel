@@ -365,8 +365,13 @@
       @if ($image)
         Photo Preview:
         <img src="{{ $image->temporaryUrl() }}" class="h-48 w-48">
+
+        
+    @else
+    <img src="{{ asset('storage/images/166116286605.png') }}" class="h-48 w-48">
+
     @endif
-      <form class="md:w-2/3 py-4" wire:submit.prevent="saveQuestion"> 
+      <form class="md:w-2/3 py-4" wire:submit.prevent="updateQuestion"> 
         @error('image') <span class="error">{{ $message }}</span> @enderror
       <div class="mt-4 mb-2">
             <label class="block text-sm">
@@ -402,7 +407,7 @@
             <label class="block text-sm">
               <span class="text-gray-700 dark:text-gray-400">Image</span>
 
-              <input required wire:model='image' class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" accept="image/*" type="file">
+              <input  wire:model='image' class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" accept="image/*" type="file">
              
             </label>
       </div>

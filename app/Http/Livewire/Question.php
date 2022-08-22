@@ -18,6 +18,7 @@ class Question extends Component
     public $open=false;
     public $openedit=false;
     public $image;
+    public $image2;
     public $category;
     public $question;
     public $answer;
@@ -70,8 +71,10 @@ class Question extends Component
 
     }
     public function openEdit($id){
+        $this->editid=$id;
         $res= ModelsQuestion::find($id);
-        // $this->image=$res->image;
+        $this->image2= $res->image;
+        // $this->image= asset('storage/images/'.$res->image)
         $this->category=$res->category_id;
         $this->question=$res->question;
         $this->answer=$res->answer;
@@ -80,6 +83,39 @@ class Question extends Component
         
         $this->openedit=true;
 
+    }
+
+    public function updateQuestion(){
+        $quiz=  ModelsQuestion::find($this->editid);
+
+        $filename="";
+
+        if($this->image){
+            $this->validate([
+                'image' => 'image|max:2024', // 1MB Max
+            ]);
+            $t=time();
+           $res= $this->image->storeAs('images', $t.$this->image->getClientOriginalName());
+           $filename=$t.$this->image->getClientOriginalName();
+
+        }else{
+            $filename=$quiz->image;
+
+        }
+        
+
+       
+       $quiz->question=$this->question;
+       $quiz->answer=$this->answer;
+       $quiz->category_id=$this->category;
+       $quiz->image=$filename;
+       $quiz->user_id=auth()->user()->id;
+
+       $quiz->save();
+       $this->open=false;
+       $this->openedit=false;
+       session()->flash('message', "Success");
+        
     }
     
 }
