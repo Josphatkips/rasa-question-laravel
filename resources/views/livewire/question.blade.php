@@ -127,8 +127,34 @@
               <td class="py-4 px-6">
                 {{$question->answer}}
               </td>
-              <td class="py-4 px-6">
+              {{-- <td class="py-4 px-6">
                 {{$question->image}}
+              </td> --}}
+
+              <td class="px-4 py-3">
+                <div class="flex items-center text-sm">
+                  <!-- Avatar with inset shadow -->
+                  <div
+                    class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                  >
+                    <img
+                      class="object-cover w-full h-full rounded-full"
+                      src="{{asset('storage/images/'.$question->image)}}"
+                      alt=""
+                      loading="lazy"
+                    />
+                    <div
+                      class="absolute inset-0 rounded-full shadow-inner"
+                      aria-hidden="true"
+                    ></div>
+                  </div>
+                  <div>
+                    <p class="font-semibold">Jolina Angelie</p>
+                    <p class="text-xs text-gray-600 dark:text-gray-400">
+                      Unemployed
+                    </p>
+                  </div>
+                </div>
               </td>
               <td class="py-4 px-6">
                 {{$question->created_at}}
