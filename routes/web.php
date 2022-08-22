@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/client/dashboard');
 });
 
 Route::get('/blank',[ClientController::class,'blank']);
