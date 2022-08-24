@@ -19,9 +19,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/categories',[ApiController::class,'categories']);
-Route::get('/categories/{id}',[ApiController::class,'getQuestions']);
-Route::get('/question/{id}',[ApiController::class,'getAnswer']);
-Route::post('/question/{id}',[ApiController::class,'getAnswer']);
+Route::post('/category',[ApiController::class,'getQuestions']);
+// Route::get('/question/{id}',[ApiController::class,'getAnswer']);
+Route::post('/question',[ApiController::class,'getAnswer']);
 Route::post('/query',[ApiController::class,'getQuery']);
 // Get all categories
 // get all questions based on categories

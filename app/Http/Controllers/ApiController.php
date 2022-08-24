@@ -14,7 +14,7 @@ class ApiController extends Controller
     public function categories( Request $request){
         // dd(Category::all());
         $categories= Category::where('user_id','=',$request->user_id)->get();
-        if(empty($categories)){
+        if(count($categories)==0){
             return response(
                 [
                 'message' => 'No Categories ','response_code'=>0,'categories'=>$categories
@@ -28,24 +28,24 @@ class ApiController extends Controller
             ]
     );
     }
-    public function getQuestions($id){
-        $questions= Question::where('category_id','=',$id)->get();
-        if(empty($questions)){
+    public function getQuestions(Request $request){
+        $questions= Question::where('category_id','=',$request->category_id)->get();
+        if(count($questions)==0){
             return response(
                 [
-                'message' => 'No Categories ','response_code'=>0,'categories'=>$questions
+                'message' => 'No Question in this category Try another category ','response_code'=>0,'questions'=>$questions
                 ]
         );
 
         }
         return response(
             [
-            'message' => 'Questions ','response_code'=>1,'categories'=>$questions
+            'message' => 'Questions ','response_code'=>1,'questions'=>$questions
             ]
     );
     }
-    public function getAnswer($id){
-        $answer= Question::where('id','=',$id)->first();
+    public function getAnswer(Request $request){
+        $answer= Question::where('id','=',$request->question_id)->first();
         if(!$answer){
             return response(
                 [
@@ -61,11 +61,15 @@ class ApiController extends Controller
     );
     }
     public function getQuery(Request $request){
-        $answer= Question::where('question','like',"%".$request->question."%")->first();
+        $answer= Question::where([
+
+            ['question','like',"%".$request->question."%"],
+            ['category_id','=',$request->category],
+        ])->first();
         if(!$answer){
             return response(
                 [
-                'message' => 'No Question ','response_code'=>0,'answer'=>''
+                'message' => "Sorry, I can't find that question ",'response_code'=>0,'answer'=>''
                 ]
         );
 
