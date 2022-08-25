@@ -18,8 +18,7 @@ class Dashboard extends Component
         return view('livewire.dashboard', compact('cats','quiz'));
     }
     public function openModal(){
-        $this->url=env('CLIENT_URL').auth()->user()->id;
-        
+        $this->url=env('CLIENT_URL').'?user_id='.auth()->user()->id;
         $this->open=true;
 
     }
