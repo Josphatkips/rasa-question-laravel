@@ -29,7 +29,7 @@ console.log(params)
             window.WebChat.default(
               {
                 customData: { language: "en" },
-                socketUrl: "http://localhost:5005",
+                socketUrl: "https://rqs.roycehub.com",
                 title: "Rasa Questions",
                 subtitle: "Get response quickly",
                 initPayload: `/get_started{"user_id": "${params.toString()}" }`,
