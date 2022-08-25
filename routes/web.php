@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/client/dashboard');
 });
-Route::get('/help', function () {
+Route::get('/chatbot', function () {
     return view('chatbot.index');
 });
 
