@@ -49,6 +49,8 @@ class Question extends Component
         $this->validate([
             'image' => 'image', // 1MB Max
         ]);
+
+        Log::info($this->image);
         $t=time();
        $res= $this->image->storeAs('images', $t.$this->image->getClientOriginalName());
 
