@@ -269,7 +269,7 @@
         Photo Preview:
         <img src="{{ $image->temporaryUrl() }}" class="h-48 w-48">
     @endif
-      <form class="md:w-2/3 py-4" wire:submit.prevent="saveQuestion"> 
+      <form class="md:w-2/3 py-4" wire:submit.prevent="saveQuestion"  enctype="multipart/form-data"> 
         @error('image') <span class="error">{{ $message }}</span> @enderror
       <div class="mt-4 mb-2">
             <label class="block text-sm">
@@ -392,7 +392,7 @@
     <img src="{{ asset('storage/images/'.$image2) }}" class="h-48 w-48">
 
     @endif
-      <form class="md:w-2/3 py-4" wire:submit.prevent="updateQuestion"> 
+      <form class="md:w-2/3 py-4" wire:submit.prevent="updateQuestion"  enctype="multipart/form-data"> 
         @error('image') <span class="error">{{ $message }}</span> @enderror
       <div class="mt-4 mb-2">
             <label class="block text-sm">
