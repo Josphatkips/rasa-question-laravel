@@ -46,9 +46,9 @@ class Question extends Component
     }
 
     public function saveQuestion(){
-        // $this->validate([
-        //     'image' => 'image', // 1MB Max
-        // ]);
+        $this->validate([
+            'image' => 'image', // 1MB Max
+        ]);
         $t=time();
        $res= $this->image->storeAs('images', $t.$this->image->getClientOriginalName());
 
