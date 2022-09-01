@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Category;
 use App\Models\Question as ModelsQuestion;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -22,6 +23,8 @@ class Question extends Component
     public $category;
     public $question;
     public $answer;
+
+    public $selected_id=[];
     public function updatingSearch()
     {
         $this->resetPage();
@@ -44,21 +47,61 @@ class Question extends Component
     public function openModal(){
         $this->open=true;
     }
+    public function duplicate($id){
+
+       
+        $post = ModelsQuestion::find($id);
+        $newPost = $post->replicate();
+        $newPost->created_at = Carbon::now();
+        $newPost->save();
+        
+    }
+    public function editSelection(){
+        // $this->open=true;
+        // Log::info("clicked");
+
+        if(empty($this->selected_id)){
+            session()->flash('message', "Select atleast one question");
+            return;
+        }
+        if(!$this->category){
+            session()->flash('message', "Select category");
+
+            return;
+        }
+        foreach($this->selected_id as $si){
+            $nw= ModelsQuestion::find($si);
+            $nw->category_id=$this->category;
+            $nw->save();
+
+        }
+        $this->selected_id=[];
+        session()->flash('message', "Success");
+    }
 
     public function saveQuestion(){
+        $filename="";
+
+        if($this->image){
+
         $this->validate([
             'image' => 'image', // 1MB Max
         ]);
-
-        Log::info($this->image);
         $t=time();
        $res= $this->image->storeAs('images', $t.$this->image->getClientOriginalName());
+       $filename=$t.$this->image->getClientOriginalName();
+    }else{
+        $filename="";
+    }
+
+        // Log::info($this->image);
+        
 
        $quiz= new ModelsQuestion;
        $quiz->question=$this->question;
        $quiz->answer=$this->answer;
        $quiz->category_id=$this->category;
-       $quiz->image=$t.$this->image->getClientOriginalName();
+       $quiz->image=$filename;
        $quiz->user_id=auth()->user()->id;
 
        $quiz->save();
