@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Imports\QuestionsImport;
 use App\Models\Category;
 use App\Models\Question as ModelsQuestion;
 use Carbon\Carbon;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Question extends Component
 {
@@ -17,8 +19,10 @@ class Question extends Component
     public $editid;
     public $search = '';
     public $open=false;
+    public $openexcel=false;
     public $openedit=false;
     public $image;
+    public $excel;
     public $image2;
     public $category;
     public $question;
@@ -43,9 +47,13 @@ class Question extends Component
         // Log::info("hello");
         $this->open=false;
         $this->openedit=false;
+        $this->openexcel=false;
     }
     public function openModal(){
         $this->open=true;
+    }
+    public function openExcel(){
+        $this->openexcel=true;
     }
     public function duplicate($id){
 
@@ -162,5 +170,15 @@ class Question extends Component
        session()->flash('message', "Success");
         
     }
+
+    public function saveExcelQuestion()
+{
+    Excel::import(new QuestionsImport, $this->excel);
+
+    session()->flash('message', "Success");
+    
+
+        // return redirect()->route('users.index')->with('success', 'User Imported Successfully');
+}
     
 }
