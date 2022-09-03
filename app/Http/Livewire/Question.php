@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Question as ModelsQuestion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
@@ -32,6 +33,10 @@ class Question extends Component
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+    public function downloadTemplate()
+    {
+        return Storage::disk('local')->download('questiontemplate.xlsx');
     }
     public function render()
     {

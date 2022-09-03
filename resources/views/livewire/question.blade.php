@@ -436,7 +436,7 @@
             <label class="block text-sm">
               <span class="text-gray-700 dark:text-gray-400">Download Template</span>
 
-              <input  wire:model='image' class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" accept=".xlsx, .xls, .csv" type="file">
+              <button type="button" wire:click="downloadTemplate" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Download Template</button>
              
             </label>
       </div>
