@@ -18,13 +18,13 @@ class FailedQuestion extends Component
     {
 
 
-        $failed_question= ModelsFailedQuestion::join('categories','categories.id','!=','failed_questions.category_id')
+        $failed_question= ModelsFailedQuestion::join('categories','categories.id','=','failed_questions.category_id')
         ->select('failed_questions.*','categories.name')
         ->where([
             ['categories.user_id',auth()->user()->id],
             ['answered','like', '%'.$this->search.'%']
             ])
-        ->paginate(1);
+        ->paginate(50);
         
 
         return view('livewire.failed-question', compact('failed_question'));
