@@ -31,4 +31,9 @@ class ClientController extends Controller
         return view('client.dashboard');
 
     }
+    public function failedQuestion(){
+
+        return view('client.failedquestion');
+        
+    }
 }

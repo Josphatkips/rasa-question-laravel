@@ -134,7 +134,7 @@
                 </ul>
               </template>
             </li>
-            {{-- <li class="relative px-6 py-3">
+             <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 @click="toggleReportsMenu"
@@ -187,31 +187,21 @@
                   >
                     <a class="w-full" href="{{url('user/profile')}}>Profile</a>
                   </li>
+                  
                   <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="{{url('user/profile')}}">
-                     Profile
-                    </a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="{{url('user/profile')}}>Profile</a>
-                  </li>
-                  <li
-                    class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  >
-                    <a class="w-full" href="{{url('user/profile')}}">
-                     Change Password
-                    </a>
-                  </li>
+                  class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                >
+                  <a class="w-full" href="{{url('/client/reports/question')}}">
+                   Questions
+                  </a>
+                </li>
+                  
                   
                   
                  
                 </ul>
               </template>
-            </li> --}}
+            </li>
             <li class="relative px-6 py-3">
               <button
                 class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -430,7 +420,7 @@
               </ul>
             </template>
           </li>
-          {{-- <li class="relative px-6 py-3">
+           <li class="relative px-6 py-3">
             <button
               class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
               @click="toggleReportsMenu"
@@ -486,11 +476,11 @@
                 <li
                   class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 >
-                  <a class="w-full" href="{{url('user/profile')}}">
-                   Profile
+                  <a class="w-full" href="{{url('/client/reports/question')}}">
+                   Questions
                   </a>
                 </li>
-                <li
+                {{-- <li
                   class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 >
                   <a class="w-full" href="{{url('user/profile')}}>Profile</a>
@@ -501,13 +491,13 @@
                   <a class="w-full" href="{{url('user/profile')}}">
                    Change Password
                   </a>
-                </li>
+                </li> --}}
                 
                 
                
               </ul>
             </template>
-          </li> --}}
+          </li>
           <li class="relative px-6 py-3">
             <button
               class="inline-flex items-center justify-between w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"

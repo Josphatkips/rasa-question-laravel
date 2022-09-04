@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\FailedQuestion;
 use App\Models\Question;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ApiController extends Controller
 {
@@ -61,12 +63,20 @@ class ApiController extends Controller
     );
     }
     public function getQuery(Request $request){
+        Log::info(FailedQuestion::all());
         $answer= Question::where([
 
             ['question','like',"%".$request->question."%"],
             ['category_id','=',$request->category],
         ])->first();
         if(!$answer){
+
+            $fq=new FailedQuestion;
+            $fq->question=$request->question;
+            $fq->category_id=$request->category;
+            $fq->answered='No';
+
+            $fq->save();
             return response(
                 [
                 'message' => "Sorry, I can't find that question ",'response_code'=>0,'answer'=>''
@@ -74,10 +84,18 @@ class ApiController extends Controller
         );
 
         }
+        $fq=new FailedQuestion;
+            $fq->question=$request->question;
+            $fq->category_id=$request->category;
+            $fq->answered='Yes';
+
+            $fq->save();
         return response(
             [
             'message' => 'Questions ','response_code'=>1,'answer'=>$answer->answer
             ]
     );
     }
+
+    
 }

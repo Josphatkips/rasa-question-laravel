@@ -38,5 +38,6 @@ Route::group(['prefix'=>'client','middleware' => ['verified']],function () {
     Route::get('categories',[ClientController::class,'categories']);
     Route::get('questions',[ClientController::class,'questions']);
     Route::get('dashboard',[ClientController::class,'dashboard']);
+    Route::get('reports/question',[ClientController::class,'failedQuestion']);
 });
 // Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
