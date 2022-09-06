@@ -152,9 +152,8 @@
               </th>
               <td class="py-4 px-6">
                 {{$question->category->name}}
-              </td><td class="py-4 px-6">
-                {{$question->category->id}}
               </td>
+              
               <td class="py-4 px-6">
                 {{$question->answer}}
               </td>
