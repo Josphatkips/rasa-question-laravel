@@ -30,6 +30,7 @@ console.log(params)
               {
                 customData: { language: "en" },
                 socketUrl: "https://rqs.roycehub.com",
+                // socketUrl: "http://localhost:5005",
                 title: "Rasa Questions",
                 subtitle: "Get response quickly",
                 initPayload: `/get_started{"user_id": "${params.toString()}" }`,

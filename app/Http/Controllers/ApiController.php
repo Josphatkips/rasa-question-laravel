@@ -49,6 +49,14 @@ class ApiController extends Controller
     public function getAnswer(Request $request){
         $answer= Question::where('id','=',$request->question_id)->first();
         if(!$answer){
+
+            $fq=new FailedQuestion;
+            $fq->question=$answer->question;
+            $fq->category_id=$answer->category_id;
+            $fq->uid=$request->uid;
+            $fq->answered='No';
+
+            $fq->save();
             return response(
                 [
                 'message' => 'No Question ','response_code'=>0,'answer'=>''
@@ -56,6 +64,13 @@ class ApiController extends Controller
         );
 
         }
+        $fq=new FailedQuestion;
+            $fq->question=$answer->question;
+            $fq->category_id=$answer->category_id;
+            $fq->uid=$request->uid;
+            $fq->answered='Yes';
+
+            $fq->save();
         return response(
             [
             'message' => 'Questions ','response_code'=>1,'answer'=>$answer->answer
@@ -63,7 +78,7 @@ class ApiController extends Controller
     );
     }
     public function getQuery(Request $request){
-        Log::info(FailedQuestion::all());
+        // Log::info($request->all());
         $answer= Question::where([
 
             ['question','like',"%".$request->question."%"],
@@ -74,6 +89,7 @@ class ApiController extends Controller
             $fq=new FailedQuestion;
             $fq->question=$request->question;
             $fq->category_id=$request->category;
+            $fq->uid=$request->uid;
             $fq->answered='No';
 
             $fq->save();
@@ -88,6 +104,7 @@ class ApiController extends Controller
             $fq->question=$request->question;
             $fq->category_id=$request->category;
             $fq->answered='Yes';
+            $fq->uid=$request->uid;
 
             $fq->save();
         return response(
@@ -95,6 +112,19 @@ class ApiController extends Controller
             'message' => 'Questions ','response_code'=>1,'answer'=>$answer->answer
             ]
     );
+    }
+
+    public function rating(Request $request){
+        $fq= FailedQuestion::where('uid',$request->uid)->first();
+        $fq->helpful=$request->rating;
+        $fq->save();
+
+        return response(
+            [
+            'message' => 'Success'
+            ]);
+
+
     }
 
     

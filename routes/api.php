@@ -23,6 +23,7 @@ Route::post('/category',[ApiController::class,'getQuestions']);
 // Route::get('/question/{id}',[ApiController::class,'getAnswer']);
 Route::post('/question',[ApiController::class,'getAnswer']);
 Route::post('/query',[ApiController::class,'getQuery']);
+Route::post('/rating',[ApiController::class,'rating']);
 // Get all categories
 // get all questions based on categories
 //  get answer based on question Id

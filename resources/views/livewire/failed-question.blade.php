@@ -91,6 +91,8 @@
               </th>
               <th scope="col" class="py-3 px-6">
                   Answered?
+              </th><th scope="col" class="py-3 px-6">
+                  Helpful?
               </th>
               <th scope="col" class="py-3 px-6">
                   Date
@@ -117,6 +119,8 @@
               </th>
               <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {{$category->answered}}
+              </th><th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{$category->helpful}}
               </th>
               <td class="py-4 px-6">
                 {{$category->created_at}}
