@@ -15,7 +15,8 @@ class ApiController extends Controller
 
     public function categories( Request $request){
         // dd(Category::all());
-        $categories= Category::where('user_id','=',$request->user_id)->get();
+        $categories= Category::join('users','users.id','=','categories.user_id')
+        ->where('chatbot_code','=',$request->chatbot_code)->get();
         if(count($categories)==0){
             return response(
                 [
