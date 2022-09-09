@@ -34,6 +34,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::get('/hash',function(){
+    dd(hash('crc32b','josphatkips@gmail.com1'));
+
+});
 Route::group(['prefix'=>'client','middleware' => ['verified']],function () {
     Route::get('categories',[ClientController::class,'categories']);
     Route::get('questions',[ClientController::class,'questions']);
