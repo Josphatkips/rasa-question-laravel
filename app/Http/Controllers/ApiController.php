@@ -15,8 +15,10 @@ class ApiController extends Controller
 
     public function categories( Request $request){
         // dd(Category::all());
+        Log::info($request->all());
         $categories= Category::join('users','users.id','=','categories.user_id')
-        ->where('chatbot_code','=',$request->chatbot_code)->get();
+        ->where('chatbot_code','=',$request->user_id)
+        ->select('categories.*')->get();
         if(count($categories)==0){
             return response(
                 [
@@ -74,7 +76,7 @@ class ApiController extends Controller
             $fq->save();
         return response(
             [
-            'message' => 'Questions ','response_code'=>1,'answer'=>$answer->answer
+            'message' => 'Questions ','response_code'=>1,'answer'=>$answer
             ]
     );
     }
@@ -110,7 +112,7 @@ class ApiController extends Controller
             $fq->save();
         return response(
             [
-            'message' => 'Questions ','response_code'=>1,'answer'=>$answer->answer
+            'message' => 'Questions ','response_code'=>1,'answer'=>$answer
             ]
     );
     }
